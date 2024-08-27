@@ -1,0 +1,84 @@
+{% extends "./base.html" %} {% block content %}
+{% load static %}
+
+<div class="row">
+  <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    
+    <h2><i class="fa-solid fa-plus"></i> Agregar Curso</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/crearCurso/" method="POST">{% csrf_token %}
+                    <div class="form-group mb-3">
+                        <input type="text" id="codigo" name="codigo" class="form-control" 
+                        placeholder="Código" maxlength="6" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre"
+                            maxlength="50" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="number" id="horas" name="horas" class="form-control" 
+                        placeholder="Horas" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+  </div>
+
+  <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">    
+    <h2><i class="fa-solid fa-bars"></i> Lista de Cursos</h2>
+        <div class="table-responsive py-2">
+            <table id="tabla" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Horas</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in cursos %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{c.codigo}}</td>
+                        <td>{{c.nombre}}</td>
+                        <td>{{c.horas}}</td>
+                        <td class="text-end">
+                          <a href="{% url 'editarCurso' c.codigo %}" class="btn btn-info">
+                            <i class="fa-solid fa-pen-to-square"></i></a>
+                          <a href="{% url 'eliminarCurso' c.codigo %}" class="btn btn-danger">
+                            <i class="fa-solid fa-trash"></i></a>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+  </div>
+
+</div>
+
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- DataTable.js -->
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script> 
+
+<!-- Custom JS -->
+<script src="{% static 'js/funciones.js' %}"></script> 
+
+{% endblock %}

@@ -81,14 +81,25 @@ WSGI_APPLICATION = 'bootcamp.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'bootcamp',
+#         'USER': 'root',
+#         'PASSWORD': '12345678',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bootcamp',
-        'USER': 'root',
-        'PASSWORD': '12345678',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'curso',
+        'USER': 'postgres',
+        'PASSWORD': '12345',
+        'HOST': 'localhost',  # O la dirección del servidor de PostgreSQL
+        'PORT': '5432',           # Deja vacío para usar el puerto por defecto
     }
 }
 

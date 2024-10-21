@@ -98,8 +98,8 @@ DATABASES = {
         'NAME': 'curso',
         'USER': 'postgres',
         'PASSWORD': '12345',
-        'HOST': 'localhost',  # O la dirección del servidor de PostgreSQL
-        'PORT': '5432',           # Deja vacío para usar el puerto por defecto
+        'HOST': 'localhost',  
+        'PORT': '5432',          
     }
 }
 

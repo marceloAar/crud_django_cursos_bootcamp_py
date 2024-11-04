@@ -77,30 +77,39 @@ WSGI_APPLICATION = 'bootcamp.wsgi.application'
 
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'curso',
+#         'USER': 'postgres',
+#         'PASSWORD': '12345',
+#         'HOST': 'localhost',  
+#         'PORT': '5432',          
+#     }
+# }
+
+##para despliegue
+import os
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'curso',
-        'USER': 'postgres',
-        'PASSWORD': '12345',
-        'HOST': 'localhost',  
-        'PORT': '5432',          
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('cursos'),
+        'USER': os.getenv('postgres'),
+        'PASSWORD': os.getenv('12345'),
+        'HOST': os.getenv('localhost'),
+        'PORT': os.getenv('5432'),
     }
 }
 
-##para despliegue
-# import os
+# Clave secreta
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('cursos'),
-#         'USER': os.getenv('postgres'),
-#         'PASSWORD': os.getenv('12345'),
-#         'HOST': os.getenv('localhost'),
-#         'PORT': os.getenv('5432', '5432'),
-#     }
-# }
+# Modo de depuración
+DEBUG = os.getenv('DEBUG') == 'True'
+
+# Hosts permitidos
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
 
 # Password validation
@@ -125,9 +134,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-cl'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Santiago'
 
 USE_I18N = True
 

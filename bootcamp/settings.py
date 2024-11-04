@@ -74,23 +74,8 @@ WSGI_APPLICATION = 'bootcamp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'bootcamp',
-#         'USER': 'root',
-#         'PASSWORD': '12345678',
-#         'HOST': 'localhost',
-#         'PORT': '3306',
-#     }
-# }
+
 
 DATABASES = {
     'default': {
@@ -102,6 +87,20 @@ DATABASES = {
         'PORT': '5432',          
     }
 }
+
+##para despliegue
+# import os
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv('cursos'),
+#         'USER': os.getenv('postgres'),
+#         'PASSWORD': os.getenv('12345'),
+#         'HOST': os.getenv('localhost'),
+#         'PORT': os.getenv('5432', '5432'),
+#     }
+# }
 
 
 # Password validation
